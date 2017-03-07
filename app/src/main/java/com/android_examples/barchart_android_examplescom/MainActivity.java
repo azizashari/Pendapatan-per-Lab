@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.ProgressDialog;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         return params;
     }*/
     //deklarasi variabel global
+
     BarChart chart ;
     ArrayList<BarEntry> BARENTRY ;
     ArrayList<String> BarEntryLabels ;
@@ -64,9 +67,7 @@ public class MainActivity extends AppCompatActivity {
         BARENTRY = new ArrayList<>();
         BarEntryLabels = new ArrayList<String>();
         // AddValuesToBARENTRY();
-
         // =================== Spinner untuk laboratorium ======================//
-
         // Spinner element
         spinner = (Spinner) findViewById(R.id.spinner);
 
@@ -105,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
         year.add("2019");
         year.add("2020");
 
-
         // Creating adapter for spinner
         dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, labs);
 
@@ -114,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
 
         // attaching data adapter to spinner
         spinner2.setAdapter(dataAdapter);
-
 
         // Creating adapter for spinner
         dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, year);
@@ -171,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
     public void AddValuesToBarEntryLabels(){
         //parameter bulan
@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
 
     //menampilkan username dari tabel users dan aktivitas dari tabel log
     private void showJSON(String response){
-        //listLog = (ListView) findViewById(R.id.listview);
+        //listLog = (ListVie w) findViewById(R.id.listview);
         int n = 0; //counter
         try {
             JSONArray result = new JSONArray(response);
@@ -269,6 +269,23 @@ public class MainActivity extends AppCompatActivity {
 
         if(n==0){ //jika data null
             chart.clear();
+        }
+    }
+
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        // Checks the orientation of the screen
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+            spinner.setSelection(0);
+            spinner2.setSelection(0);
+
+        }else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+            spinner.setSelection(0);
+            spinner2.setSelection(0);
+
         }
     }
 }

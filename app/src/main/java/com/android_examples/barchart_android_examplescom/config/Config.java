@@ -10,8 +10,8 @@ public class Config {
 
     //JSON for load status keuangan
     public static final String JSON_ARRAY = "result";
-    public static final String KEY_BIAYA = "biaya";
-    public static final String KEY_LABS = "nama";
-    public static final String KEY_TAHUN = "tahun";
+    public static final String KEY_BIAYA = "biaya"; //total pendapatan per lab
+    public static final String KEY_LABS = "nama"; //nama laboratorium
+    public static final String KEY_TAHUN = "tahun"; //tahun
 }
 
